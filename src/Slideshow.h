@@ -2,7 +2,7 @@
 
 #include "ofMain.h"
 #include "ShadowScene.h"
-//#include "ProximityScene.h"
+#include "GestaltDemos.h"
 
 class Slideshow
 {
@@ -16,6 +16,7 @@ class Slideshow
 		void next_slide();
 		void prev_slide();
 		void key_pressed(int key);
+		void draw_annotation(string text, int x_pos, int y_pos);
 		Slideshow();
 
 	private:

@@ -12,7 +12,7 @@ void ofApp::setup(){
 	//		- button to lerp camera to dif pos, then lerp back when button released
 	/*penrose_triangle.loadModel("/models/penrose_tri.obj");
 	cam.enableOrtho();*/
-
+	ofSetBackgroundColor(ofColor(20));
 	slides.setup();
 	//shadow_scene.setup();
 }

@@ -152,3 +152,15 @@ void ShadowScene::toggle_mesh_1_or_2()
 {
 	draw_mesh_1_or_2 = !draw_mesh_1_or_2;
 }
+
+void ShadowScene::toggle_perspective_mode()
+{
+	if (text_shadow.isPerspective())
+	{
+		text_shadow.setPerspective(false);
+	}
+	else
+	{
+		text_shadow.setPerspective(true);
+	}
+}

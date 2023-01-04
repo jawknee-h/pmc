@@ -1,2 +1,3 @@
 ofxAssimpModelLoader
 ofxShadow-master
+ofxSvg

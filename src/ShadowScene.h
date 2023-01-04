@@ -25,6 +25,7 @@ class ShadowScene
 		void draw_mesh_1();
 		void draw_mesh_2();
 		void toggle_mesh_1_or_2();
+		void toggle_perspective_mode();
 
 		ofxShadow text_shadow;	// a shadow
 		ShadowScene();
