@@ -25,18 +25,4 @@ class ofApp : public ofBaseApp{
 		void gotMessage(ofMessage msg);
 
 		Slideshow slides;
-		
-		// draw the impossible triangle, or penrose triangle
-		void draw_penrose_triangle_scene();
-
-		//ShadowScene shadow_scene;
-
-		//void setup_shadow_scene();
-		//void draw_shadow_scene();
-
-		//// camera so we can control perspective easily.
-		//ofEasyCam cam;
-
-		//// penrose triangle - perspective
-		//ofxAssimpModelLoader penrose_triangle;
 };

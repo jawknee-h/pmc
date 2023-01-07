@@ -12,7 +12,6 @@ class ShadowScene
 		void update();
 		void draw();
 		void render_scene();
-		void draw_shadow_scene();
 		void disable_shadows();
 		void enable_shadows();
 		void set_cam_position(glm::vec3 new_pos);
@@ -26,19 +25,16 @@ class ShadowScene
 		void draw_mesh_2();
 		void toggle_mesh_1_or_2();
 		void toggle_perspective_mode();
+		void lerp_cam_to(ofVec3f target_pos);
+		glm::vec3 get_cam_position();
 
 		ofxShadow text_shadow;	// a shadow
 		ShadowScene();
 
 	private:
 		
-		ofCamera cam;	// camera so we can control perspective easily.
-		//ofEasyCam cam;
-
-		struct {
-			ofVec3f pos;
-			ofVec3f look_at;
-		} cam_target, cam_current;
+		//ofCamera cam;	// camera so we can control perspective easily.
+		ofEasyCam cam;
 
 		bool shadow_ray_enabled;
 
@@ -54,5 +50,4 @@ class ShadowScene
 		ofSpherePrimitive shadow_debug_sphere;	// debug sphere mesh
 
 		ofVec3f shadow_look_at;	// the position the shadow will be cast to
-		ofVec3f shadow_pos;	// the position the shadow will be cast from
 };

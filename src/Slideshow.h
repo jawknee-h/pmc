@@ -16,7 +16,7 @@ class Slideshow
 		void next_slide();
 		void prev_slide();
 		void key_pressed(int key);
-		void draw_annotation(string text, int x_pos, int y_pos);
+		void draw_annotation(string text);
 		Slideshow();
 
 	private:

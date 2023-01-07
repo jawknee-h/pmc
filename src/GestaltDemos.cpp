@@ -46,13 +46,13 @@ void enable_outline()
 		// - 'step' amt different from the paths next to it
 		// - brighter than 'min' amt
 		int step = 80;
-		int min = 50;
+		int max = 100;
 		int col = ofMap(
 			(i*step)%255,
 			0, 
 			255,
-			min,
-			255
+			0,
+			max
 		);
 		paths[i].setFillColor(col);
 	}
@@ -69,7 +69,7 @@ void disable_outline()
 	for (int i = 0; i < paths.size(); i++)
 	{
 		// set the fill colour to a constant value
-		paths[i].setFillColor(100);
+		paths[i].setFillColor(20);
 	}
 
 	// switch draw mode
@@ -121,7 +121,7 @@ void law_of_proximity_simplified(int x_pos, int y_pos, int cols, int grid_scale,
 		{
 			// drawing the shape
 			ofPushStyle();
-			ofSetColor(220);
+			ofSetColor(20);
 			ofDrawEllipse({x * col_width, y * col_width}, circle_radius, circle_radius);
 			ofPopStyle();
 		}
@@ -165,7 +165,7 @@ void law_of_pragnanz_simplified(int x_pos, int y_pos)
 	if (draw_mode == 0)
 	{
 		// setting colour to a constant amount
-		ofSetColor({100});
+		ofSetColor({20});
 
 		// drawing ellipse
 		ofDrawEllipse({ 0, 0 }, 200, 200);
@@ -185,15 +185,15 @@ void law_of_pragnanz_simplified(int x_pos, int y_pos)
 	else if (draw_mode == 1)
 	{
 		// drawing ellipse with its own colour
-		ofSetColor(60);
+		ofSetColor(20);
 		ofDrawEllipse({ 0, 0 }, 200, 200);
 
 		// drawing rectangle with its own colour
-		ofSetColor(120);
+		ofSetColor(60);
 		ofDrawRectangle({ 45, 45 }, 200, 200);
 
 		// drawing triangle with its own colour
-		ofSetColor(250);
+		ofSetColor(240);
 		ofPushMatrix();
 		ofTranslate(150, -108);
 		ofRotateDeg(20);

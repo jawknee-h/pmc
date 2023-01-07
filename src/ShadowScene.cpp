@@ -29,20 +29,26 @@ void ShadowScene::setup()
 	mesh_2 = model_2.getMesh(0);
 
 	// setting up the ground plane
-	ground_plane.setWidth(3000);
+	ground_plane.setWidth(5000);
 	ground_plane.setHeight(1);
-	ground_plane.setDepth(3000);
+	ground_plane.setDepth(5000);
 
 	// setting up the debug sphere for the light source
 	shadow_debug_sphere.set(8, 12);
+
+	// initializing camera settings
+	cam.setFov(82);
+	cam.setNearClip(20);
+	cam.setLensOffset({ 0, -0.156 });
 }
 
 void ShadowScene::update()
 {
+	// making the shadow look at a constant position
 	text_shadow.lookAt(shadow_look_at);
 
-	shadow_pos = text_shadow.getPosition();
-	shadow_debug_sphere.setPosition(shadow_pos);
+	// Setting the debug sphere to the follow the position of
+	shadow_debug_sphere.setPosition(text_shadow.getPosition());
 }
 
 void ShadowScene::draw()
@@ -60,6 +66,7 @@ void ShadowScene::draw()
 
 void ShadowScene::render_scene()
 {
+	// drawing the correct mesh
 	if (draw_mesh_1_or_2 == true)
 	{
 		mesh_1.draw();
@@ -69,6 +76,10 @@ void ShadowScene::render_scene()
 		mesh_2.draw();
 	}
 
+	// the position the shadow will be cast from
+	ofVec3f shadow_pos = text_shadow.getPosition();
+
+	// drawing the shadow debug ray if it's enabled
 	if (shadow_ray_enabled)
 	{
 		ofDrawLine(
@@ -83,12 +94,8 @@ void ShadowScene::render_scene()
 		shadow_debug_sphere.draw();
 	}
 	
+	// drawing the ground plane
 	ground_plane.draw();
-}
-
-void ShadowScene::draw_shadow_scene()
-{
-
 }
 
 void ShadowScene::disable_shadows()
@@ -110,7 +117,6 @@ void ShadowScene::set_cam_look_dir(glm::vec3 new_dir)
 {
 	
 	cam.lookAt(new_dir);
-	//cam.setTarget(new_dir);
 }
 
 void ShadowScene::enable_shadow_debug_ray()
@@ -153,6 +159,7 @@ void ShadowScene::toggle_mesh_1_or_2()
 	draw_mesh_1_or_2 = !draw_mesh_1_or_2;
 }
 
+/// function to toggle between perspective mode and orthographic mode for the shadow
 void ShadowScene::toggle_perspective_mode()
 {
 	if (text_shadow.isPerspective())
@@ -163,4 +170,18 @@ void ShadowScene::toggle_perspective_mode()
 	{
 		text_shadow.setPerspective(true);
 	}
+}
+
+/// function to smoothly move  the camera to the target position
+void ShadowScene::lerp_cam_to(ofVec3f target_pos)
+{
+	ofVec3f p = get_cam_position();
+	if (p.distance(target_pos) < 1) { return; }
+
+	set_cam_position(p.interpolate(target_pos, 0.1));
+}
+
+glm::vec3 ShadowScene::get_cam_position()
+{
+	return cam.getPosition();
 }
